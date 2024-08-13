@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- <div class="Header">
+        <div id="logo">
+            <img src="./mch_logo.png" alt="Master Coding Hub" srcset="">
+        </div>
+        <div id="name">Master Coding Hub</div>
+    </div> -->
+    <div class="Heading">
+      <header>
+        <h1>Sudoku Solver Using Back Tracking Created By Partha</h1>
+      </header>
+    </div>
+
+    <div>
+      <div class="sudoku_grid">
+        <div
+          id="0"
+          class="clickable box1 bl bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="1"
+          class="clickable box1 bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="2"
+          class="clickable box1 br bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="3"
+          class="clickable box2 bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="4"
+          class="clickable box2 bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="5"
+          class="clickable box2 br bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="6"
+          class="clickable box3 bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="7"
+          class="clickable box3 bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="8"
+          class="clickable box3 br bt"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="9"
+          class="clickable box1 bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="10"
+          class="clickable box1"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="11"
+          class="clickable box1 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="12"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="13"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="14"
+          class="clickable box2 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="15"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="16"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="17"
+          class="clickable box3 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="18"
+          class="clickable box1 bb bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="19"
+          class="clickable box1 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="20"
+          class="clickable box1 br bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="21"
+          class="clickable box2 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="22"
+          class="clickable box2 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="23"
+          class="clickable box2 br bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="24"
+          class="clickable box3 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="25"
+          class="clickable box3 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="26"
+          class="clickable box3 bb br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="27"
+          class="clickable box1 bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="28"
+          class="clickable box1"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="29"
+          class="clickable box1 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="30"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="31"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="32"
+          class="clickable box2 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="33"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="34"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="35"
+          class="clickable box3 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="36"
+          class="clickable box1 bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="37"
+          class="clickable box1"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="38"
+          class="clickable box1 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="39"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="40"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="41"
+          class="clickable box2 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="42"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="43"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="44"
+          class="clickable box3 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="45"
+          class="clickable box1 bb bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="46"
+          class="clickable box1 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="47"
+          class="clickable box1 br bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="48"
+          class="clickable box2 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="49"
+          class="clickable box2 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="50"
+          class="clickable box2 br bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="51"
+          class="clickable box3 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="52"
+          class="clickable box3 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="53"
+          class="clickable box3 bb br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="54"
+          class="clickable box1 bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="55"
+          class="clickable box1"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="56"
+          class="clickable box1 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="57"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="58"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="59"
+          class="clickable box2 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="60"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="61"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="62"
+          class="clickable box3 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="63"
+          class="clickable box1 bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="64"
+          class="clickable box1"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="65"
+          class="clickable box1 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="66"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="67"
+          class="clickable box2"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="68"
+          class="clickable box2 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="69"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="70"
+          class="clickable box3"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="71"
+          class="clickable box3 br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="72"
+          class="clickable box1 bb bl"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="73"
+          class="clickable box1 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="74"
+          class="clickable box1 br bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="75"
+          class="clickable box2 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="76"
+          class="clickable box2 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="77"
+          class="clickable box2 br bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="78"
+          class="clickable box3 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="79"
+          class="clickable box3 bb"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+        ></div>
+        <div
+          id="80"
+          class="clickable box3 bb br"
+          tabindex="0"
+          onkeydown="handleKeyDown(event)"
+          contenteditable="false"
+        ></div>
+      </div>
+
+      <div class="Buttons container">
+        <button id="GetPuzzle" class="btn-hover color-2">
+          Automatic Input
+        </button>
+        <button id="GetPuzzle2" class="btn-hover color-2">Custom Input</button>
+        <button id="SolvePuzzle" class="btn-hover color-2">Solve Puzzle</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
